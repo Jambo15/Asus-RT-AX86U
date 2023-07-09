@@ -16,12 +16,12 @@ After completing these steps, the ssh-agent service should be running on your sy
 1. Open a CMD window as Administrator
 2. Create a new RSA key (ed25519 is not supported by Asus-RT-AC86U) by typing:
    
-```ssh-keygen -t rsa -b 4096 -C "MyMachineName-MyWindowsUsername-yyyy-mm-dd"```
+```ssh-keygen -t rsa -b 4096 -C "MyMachineName-julie-yyyy-mm-dd"```
 
-Replace MyMachineName, MyWindowsUsername and yyyy-mm-dd by their effective value (the comment as the end appear in the key and help to identify it)
+Replace MyMachineName, julie and yyyy-mm-dd by their effective value (the comment as the end appear in the key and help to identify it)
 
-3. Open the file C:\Users\MyWindowsUsername\.ssh\id_rsa.pub and copy the content
+3. Open the file C:\Users\julie\.ssh\id_rsa.pub and copy the content
 4. Go to the the UI of the router http://192.168.1.1/Advanced_System_Content.asp
 and paste the key on a new line in the field Authorized Key. Note: you may have different keys. One key per line.
-5. Add your private key to the ssh-agent by running the command: ```ssh-add C:\Users\MyWindowsUsername\.ssh\id_rsa```
+5. Add your private key to the ssh-agent by running the command: ```ssh-add C:\Users\julie\.ssh\id_rsa```
 Optional: You can use the ssh-agent service to store your private SSH key in memory on Windows 11. ssh-agent is a program that runs in the background and acts as a holding area for your decrypted private keys, so you don’t have to enter your passphrase every time you use the key.
