@@ -26,3 +26,12 @@ Enter a passphrase that you save in KeyPass with username MyMachineName-julie-yy
 and paste the key on a new line in the field Authorized Key. Note: you may have different keys. One key per line.
 5. Add your private key to the ssh-agent by running the command: ```ssh-add C:\Users\julie\.ssh\id_rsa```
 Optional: You can use the ssh-agent service to store your private SSH key in memory on Windows 11. ssh-agent is a program that runs in the background and acts as a holding area for your decrypted private keys, so you don’t have to enter your passphrase every time you use the key.
+
+## How to update the IP address behind my domain name?
+### Step to setup a custom ddns-start script
+2. log on using ssh to your router
+3. ```cd /jffs/scripts```
+4. ```curl -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns_infomaniak.sh```
+5. edit /jffs/scripts/.ddns_confidential and update with the desired access information
+6. ```chmod go-rwx /jffs/scripts/.ddns_confidential```
+7. edit /jffs/scripts/ddns-start and add at the end the line ```/jffs/scripts/ddns_infomaniak.sh;```
