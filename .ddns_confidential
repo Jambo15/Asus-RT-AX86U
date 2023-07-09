@@ -9,4 +9,5 @@ DNS_TOPDOMAIN_NAME='<the domain name to be changed>'
 DDNSUSERNAME='<the Identifiant found in section Dynamic DNS on https://manager.infomaniak.com/>'
 DDNSPASSWORD='<the password for the Identifiant in section Dynamic DNS on https://manager.infomaniak.com/>'
 
-DEBUG=1                                        # Default 0. Set the DEBUG variable to 1 to enable debug output
+# Set the DEBUG variable to 1 to enable debug output. Default 0
+DEBUG=0
