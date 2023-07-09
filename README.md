@@ -22,4 +22,6 @@ Replace MyMachineName, MyWindowsUsername and yyyy-mm-dd by their effective value
 
 3. Open the file C:\Users\MyWindowsUsername\.ssh\id_rsa.pub and copy the content
 4. Go to the the UI of the router http://192.168.1.1/Advanced_System_Content.asp
-and paste the key on a new line in the field Authorized Key. Note: you may have different keys. One key per line. 
+and paste the key on a new line in the field Authorized Key. Note: you may have different keys. One key per line.
+5. Add your private key to the ssh-agent by running the command: ```ssh-add C:\Users\MyWindowsUsername\.ssh\id_rsa```
+Optional: You can use the ssh-agent service to store your private SSH key in memory on Windows 11. ssh-agent is a program that runs in the background and acts as a holding area for your decrypted private keys, so you don’t have to enter your passphrase every time you use the key.
