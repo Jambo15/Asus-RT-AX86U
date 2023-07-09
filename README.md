@@ -16,7 +16,7 @@ After completing these steps, the ssh-agent service should be running on your sy
 1. Open a CMD window as Administrator
 2. Create a new RSA key (ed25519 is not supported by Asus-RT-AC86U) by typing:
    
-```ssh-keygen -t rsa -b 4096 -C "MyMachineName-julie-yyyy-mm-dd"```
+```ssh-keygen -t rsa -b 8192 -C "MyMachineName-julie-yyyy-mm-dd"```
 
 Replace MyMachineName, julie and yyyy-mm-dd by their effective value (the comment as the end appear in the key and help to identify it)
 Enter a passphrase that you save in KeyPass with username MyMachineName-julie-yyyy-mm-dd and a generated password of length 47 with Upper/Lower/Digit (to avoid conflicts with special characters like @ = when the password is used in URL)

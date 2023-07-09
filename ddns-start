@@ -1,0 +1,10 @@
+#!/bin/sh
+/jffs/scripts/ddns_infomaniak.sh;
+
+#Dynu requires to provide the account password for each DDNS update
+#/jffs/scripts/ddns_dynu.sh;
+#MY_IP=${1}
+#if [ "${MY_IP}" == "" ] ; then
+#        MY_IP=$(curl --silent ipecho.net/plain)
+#fi;
+#/jffs/scripts/cloudflareddns.sh ${MY_IP} 2>/dev/null;

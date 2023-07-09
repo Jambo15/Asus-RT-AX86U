@@ -1,0 +1,12 @@
+# Instructions
+# On https://manager.infomaniak.com/, go to section Dynamic DNS to set the Identifiant = DDNSUSERNAME and Mot de passe = DDNSUSERNAME used only for the DDNS update
+#
+# Save this in /jffs/scripts/ as .ddns_confidential
+# Use chmod u+rwx go-rwx /jffs/scripts/.ddns_confidential
+#
+# zone information
+DNS_TOPDOMAIN_NAME='<the domain name to be changed>'
+DDNSUSERNAME='<the Identifiant found in section Dynamic DNS on https://manager.infomaniak.com/>'
+DDNSPASSWORD='<the password for the Identifiant in section Dynamic DNS on https://manager.infomaniak.com/>'
+
+DEBUG=1                                        # Default 0. Set the DEBUG variable to 1 to enable debug output
