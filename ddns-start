@@ -1,10 +1,31 @@
-#!/bin/sh
-/jffs/scripts/ddns_infomaniak.sh;
+#!/bin/bash
+# https://www.infomaniak.com/fr/support/faq/2376/dyndns-via-api-infomaniak
+# generate token for domain name on https://manager.infomaniak.com/v3/108961/ng/profile/user/token/list
 
-#Dynu requires to provide the account password for each DDNS update
-#/jffs/scripts/ddns_dynu.sh;
-#MY_IP=${1}
-#if [ "${MY_IP}" == "" ] ; then
-#        MY_IP=$(curl --silent ipecho.net/plain)
-#fi;
-#/jffs/scripts/cloudflareddns.sh ${MY_IP} 2>/dev/null;
+# Function to log debug information
+debug_log() { [ "$DEBUG" -eq 1 ] && echo "$1"; }
+
+# Check if configuration file exists and is readable
+# Set the path to the configuration file with definition of the variables DNS_TOPDOMAIN_NAME DDNSUSERNAME DDNSPASSWORD DEBUG
+CONFIG_FILE=$(dirname $0)/.ddns_confidential
+[[ -f "$CONFIG_FILE" && -r "$CONFIG_FILE" ]] && source "${CONFIG_FILE}" || debug_log "Configuration file does not exist or is not readable"
+
+# Function to update IPv4 and IPv6 addresses
+update_ip() {
+    DDNS_UPDATE_STATUS=0
+    BASE_URL="https://infomaniak.com/nic/update?hostname=${DNS_TOPDOMAIN_NAME}&username=${DDNSUSERNAME}&password=${DDNSPASSWORD}"
+    if [[ "$(curl --silent -X GET "${BASE_URL}&myip=$(curl --silent -4 icanhazip.com)" 2>&1 | cut -d " " -f1)" == "good" ]] && \
+       [[ "$(curl --silent -X GET "${BASE_URL}&myip=$(curl --silent -6 icanhazip.com)" 2>&1 | cut -d " " -f1)" == "good" ]]; then
+        DDNS_UPDATE_STATUS=1
+    fi
+
+    # Call ddns_custom_updated with the value of DDNS_UPDATE_STATUS
+    /sbin/ddns_custom_updated ${DDNS_UPDATE_STATUS}
+}
+
+# Main script
+update_ip
+
+# Debug information
+debug_log "DDNS_UPDATE_STATUS='${DDNS_UPDATE_STATUS}'"
+[[ ${DDNS_UPDATE_STATUS} -eq 0 ]] && debug_log "Update failed for ${DNS_TOPDOMAIN_NAME}"
