@@ -1,6 +1,6 @@
 # Asus-RT-AC86U
 
-## How to access my router using SSH without having to enter any password from a Windows 11 machine?
+## How to access the router using SSH without having to enter any password from a Windows 11 machine?
 
 ### Prerequisites
 1. On you windows 11 machine, look for "Optional Features" and install OpenSSH Client"
@@ -18,7 +18,7 @@ After completing these steps, the ssh-agent service should be running on your sy
    
 ```ssh-keygen -t rsa -b 8192 -C "MyMachineName-julie-yyyy-mm-dd"```
 
-Replace MyMachineName, julie and yyyy-mm-dd by their effective value (the comment as the end appear in the key and help to identify it)
+Replace MyMachineName, julie and yyyy-mm-dd by their effective values (the comment as the end appear in the key and help to identify it)
 Enter a passphrase that you save in KeyPass with username MyMachineName-julie-yyyy-mm-dd and a generated password of length 47 with Upper/Lower/Digit (to avoid conflicts with special characters like @ = when the password is used in URL)
 
 3. Open the file C:\Users\julie\.ssh\id_rsa.pub and copy the content
