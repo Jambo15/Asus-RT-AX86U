@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# Update the IPv4 address (not the IPv6 address, see inline version in ddns-start
 # Set the initial value of DDNS_UPDATE_STATUS to 0
 DDNS_UPDATE_STATUS=0
 
