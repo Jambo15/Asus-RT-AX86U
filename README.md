@@ -31,8 +31,10 @@ Optional: You can use the ssh-agent service to store your private SSH key in mem
 ### Step to setup a custom ddns-start script
 2. log on using ssh to your router
 3. ```cd /jffs/scripts```
-4. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns_infomaniak.sh```
-5. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/.ddns_confidential```
-6. edit /jffs/scripts/.ddns_confidential and update with the desired access information
-7. ```chmod go-rwx /jffs/scripts/.ddns_confidential```
-8. edit /jffs/scripts/ddns-start and add at the end the line ```/jffs/scripts/ddns_infomaniak.sh;```
+4. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns-start```
+5. NO LONGER REQUIRED: ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns_infomaniak.sh```
+6. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/.ddns_confidential```
+7. edit /jffs/scripts/.ddns_confidential and update with the desired access information
+8. ```chmod u+rw,u-x,go-rwx /jffs/scripts/.ddns_confidential```
+9. ```chmod u+rwx,go-rwx /jffs/scripts/ddns-start```
+10. NO LONGER REQUIRED:edit /jffs/scripts/ddns-start and add at the end the line ```/jffs/scripts/ddns_infomaniak.sh;```
