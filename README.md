@@ -31,7 +31,8 @@ Optional: You can use the ssh-agent service to store your private SSH key in mem
 ### Step to setup a custom ddns-start script
 2. log on using ssh to your router
 3. ```cd /jffs/scripts```
-4. ```curl -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns_infomaniak.sh```
-5. edit /jffs/scripts/.ddns_confidential and update with the desired access information
-6. ```chmod go-rwx /jffs/scripts/.ddns_confidential```
-7. edit /jffs/scripts/ddns-start and add at the end the line ```/jffs/scripts/ddns_infomaniak.sh;```
+4. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns_infomaniak.sh```
+5. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/.ddns_confidential```
+6. edit /jffs/scripts/.ddns_confidential and update with the desired access information
+7. ```chmod go-rwx /jffs/scripts/.ddns_confidential```
+8. edit /jffs/scripts/ddns-start and add at the end the line ```/jffs/scripts/ddns_infomaniak.sh;```
