@@ -18,8 +18,8 @@ After completing these steps, the ssh-agent service should be running on your sy
    
 ```ssh-keygen -t rsa -b 8192 -C "MyMachineName-julie-yyyy-mm-dd"```
 
-Replace MyMachineName, julie and yyyy-mm-dd by their effective values (the comment as the end appear in the key and help to identify it)
-Enter a passphrase that you save in KeyPass with username MyMachineName-julie-yyyy-mm-dd and a generated password of length 47 with Upper/Lower/Digit (to avoid conflicts with special characters like @ = when the password is used in URL)
+Replace *MyMachineName*, *julie* and *yyyy-mm-dd* by their effective values (the comment as the end appear in the key and help to identify it)
+Enter a passphrase that you save in your password manager (e.g. Keypass) with username MyMachineName-julie-yyyy-mm-dd and a generated password of length 47 with Upper/Lower/Digit (to avoid conflicts with special characters like @ = when the password is used in URL)
 
 3. Open the file C:\Users\julie\.ssh\id_rsa.pub and copy the content
 4. Go to the the UI of the router http://192.168.1.1/Advanced_System_Content.asp
@@ -32,9 +32,7 @@ Optional: You can use the ssh-agent service to store your private SSH key in mem
 2. log on using ssh to your router
 3. ```cd /jffs/scripts```
 4. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns-start```
-5. NO LONGER REQUIRED: ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/ddns_infomaniak.sh```
 6. ```curl --silent -LJO https://raw.githubusercontent.com/Jambo15/Asus-RT-AC86U/main/.ddns_confidential```
 7. edit /jffs/scripts/.ddns_confidential and update with the desired access information
 8. ```chmod u+rw,u-x,go-rwx /jffs/scripts/.ddns_confidential```
 9. ```chmod u+rwx,go-rwx /jffs/scripts/ddns-start```
-10. NO LONGER REQUIRED:edit /jffs/scripts/ddns-start and add at the end the line ```/jffs/scripts/ddns_infomaniak.sh;```
