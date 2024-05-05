@@ -3,20 +3,30 @@
 # generate token for domain name on https://manager.infomaniak.com/v3/108961/ng/profile/user/token/list
 
 # Function to log debug information
+# This function will print the first argument if the DEBUG variable is set to 1
 debug_log() { [ "$DEBUG" -eq 1 ] && echo "$1"; }
 
 # Check if configuration file exists and is readable
 # Set the path to the configuration file with definition of the variables DNS_TOPDOMAIN_NAME DDNSUSERNAME DDNSPASSWORD DEBUG
 CONFIG_FILE=$(dirname $0)/.ddns_confidential
+# If the configuration file exists and is readable, source it. Otherwise, log a debug message.
 [[ -f "$CONFIG_FILE" && -r "$CONFIG_FILE" ]] && source "${CONFIG_FILE}" || debug_log "Configuration file does not exist or is not readable"
 
-# Function to update IPv4 and IPv6 addresses
+# Function to update IP addresses
 update_ip() {
+    # Initialize DDNS_UPDATE_STATUS to 0
     DDNS_UPDATE_STATUS=0
+    # Define the base URL for the update
     BASE_URL="https://infomaniak.com/nic/update?hostname=${DNS_TOPDOMAIN_NAME}&username=${DDNSUSERNAME}&password=${DDNSPASSWORD}"
-    if [[ "$(curl --silent -X GET "${BASE_URL}&myip=$(curl --silent -4 icanhazip.com)" 2>&1 | cut -d " " -f1)" == "good" ]] && \
-       [[ "$(curl --silent -X GET "${BASE_URL}&myip=$(curl --silent -6 icanhazip.com)" 2>&1 | cut -d " " -f1)" == "good" ]]; then
-        DDNS_UPDATE_STATUS=1
+    # Get the current IPv4 and IPv6 addresses
+    status4=$(curl --silent -X GET "${BASE_URL}&myip=$(curl --silent -4 icanhazip.com)" 2>&1 | cut -d " " -f1)
+    status6=$(curl --silent -X GET "${BASE_URL}&myip=$(curl --silent -6 icanhazip.com)" 2>&1 | cut -d " " -f1)
+
+    # If both the IPv4 and IPv6 addresses were updated successfully or not changed, set DDNS_UPDATE_STATUS to 1
+    if [[ "$status4" == "good" || "$status4" == "nochg" ]]; then
+        if [[ "$status6" == "good" || "$status6" == "nochg" ]]; then
+            DDNS_UPDATE_STATUS=1
+        fi
     fi
 
     # Call ddns_custom_updated with the value of DDNS_UPDATE_STATUS
@@ -24,8 +34,11 @@ update_ip() {
 }
 
 # Main script
+# Call the update_ip function
 update_ip
 
 # Debug information
+# Log the value of DDNS_UPDATE_STATUS
 debug_log "DDNS_UPDATE_STATUS='${DDNS_UPDATE_STATUS}'"
+# If DDNS_UPDATE_STATUS is 0, log that the update failed
 [[ ${DDNS_UPDATE_STATUS} -eq 0 ]] && debug_log "Update failed for ${DNS_TOPDOMAIN_NAME}"
