@@ -38,7 +38,7 @@ Now you can use in a cmd window: ```ssh 192.168.50.1 -p2222```
 6. ```chmod u+rw,u-x,go-rwx /jffs/scripts/.ddns_confidential```
 7. ```chmod u+rwx,go-rwx /jffs/scripts/ddns-start```
 
-## next steps
+## Next steps
 1. Fix and document IP addresses based on their MAC addresses for NAS (see password manager section LAN - SHCP Server)
 2. Enable Administration>System "Enable JFFS custom scripts and configs". Do not Enable Access Restrictions, this is the best way to lose access to your router and have to reset the master router and reconfigure eveyrthing.
 3. WAN>Virtual Server/Port Forwarding (see password manager section Port forwarding)
