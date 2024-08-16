@@ -43,4 +43,5 @@ Now you can use in a cmd window: ```ssh 192.168.50.1 -p2222```
 2. Enable Administration>System "Enable JFFS custom scripts and configs". Do not Enable Access Restrictions, this is the best way to lose access to your router and have to reset the master router and reconfigure eveyrthing.
 3. WAN>Virtual Server/Port Forwarding (see password manager section Port forwarding)
 4. For each additional Asus router (validated with RT-AC86U or RT-AX58U) you want to add as air mesh router: connect them with LAN cable (from port Internet) to the master router. Hit and keep button WPS to force a hard reset and power them on, then use + Add AirMeshNode to detect them
+5. IPv6 Enable Native (as my internet provider supports it, makes surfing is faster).
    
